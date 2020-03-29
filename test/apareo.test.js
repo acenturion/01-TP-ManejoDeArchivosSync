@@ -5,10 +5,10 @@ const apareo = require("../src/apareo");
 
 // leo los 4 archivos a memoria
 
-let a = fileUtils.leerArchivoComoString("C:/Users/Minimal/Documents/ort/01-TP-ManejoDeArchivosSync/in/10NumerosOrdenadosEntre1y50(setA).in");
-let b = fileUtils.leerArchivoComoString("C:/Users/Minimal/Documents/ort/01-TP-ManejoDeArchivosSync/in/10NumerosOrdenadosEntre1y50(setB).in");
-let c = fileUtils.leerArchivoComoString("C:/Users/Minimal/Documents/ort/01-TP-ManejoDeArchivosSync/in/imparesOrdenadosEntre1y999.in");
-let d = fileUtils.leerArchivoComoString("C:/Users/Minimal/Documents/ort/01-TP-ManejoDeArchivosSync/in/paresOrdenadosEntre2y1000.in");
+let a = fileUtils.leerArchivoComoString("./in/10NumerosOrdenadosEntre1y50(setA).in");
+let b = fileUtils.leerArchivoComoString("./in/10NumerosOrdenadosEntre1y50(setB).in");
+let c = fileUtils.leerArchivoComoString("./in/imparesOrdenadosEntre1y999.in");
+let d = fileUtils.leerArchivoComoString("./in/paresOrdenadosEntre2y1000.in");
 
 // preparo los 4 arrays a partir de los archivo leidos
 let arrayA = transformUtils.transformarStringEnArrayDeNumeros(a, ",")
@@ -28,5 +28,6 @@ let megaArray = apareo.combinarNArrays(arrays);
 let test1 = transformUtils.transformarArrayDeNumerosAUnSoloString(resArrayAYArrayB);
 let test2 = transformUtils.transformarArrayDeNumerosAUnSoloString(megaArray);
 
-fileUtils.escribirTextoEnArchivo("C:/Users/Minimal/Documents/ort/01-TP-ManejoDeArchivosSync/out/test1",test1,true);
-fileUtils.escribirTextoEnArchivo("C:/Users/Minimal/Documents/ort/01-TP-ManejoDeArchivosSync/out/test2",test2,true);
+fileUtils.escribirTextoEnArchivo("./out/test1",test1,true);
+fileUtils.escribirTextoEnArchivo("./out/test2",test2,true);
+
