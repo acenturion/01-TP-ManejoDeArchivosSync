@@ -1,5 +1,5 @@
 //NO MODIFICAR EL TEST!
-import ap from '../src/apareoConActualizacion.js'
+const ap = require('../src/apareoConActualizacion.js');
 
 const rutaDeudasOld = './in/deudasOLD.json'
 const rutaPagos = './in/pagos.json'

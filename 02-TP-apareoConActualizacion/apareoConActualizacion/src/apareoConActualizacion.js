@@ -1,4 +1,6 @@
 // importar lo que sea necesario
+const fs = require('fs');
+const util = require('util');
 
 /**
  * ordena (in place) una coleccion de datos segun las claves provistas.
@@ -6,6 +8,7 @@
  * @param {string[]} claves las claves por las que quiero ordenar, por orden de importancia
  */
 function ordenar(coleccion, claves) {
+    return coleccion.sort((a, b) => (a[claves] > b[claves]) ? 1 : -1);
 }
 
 /**
@@ -16,6 +19,17 @@ function ordenar(coleccion, claves) {
  * @param {string} rutaLog
  */
 function actualizarArchivosDeudas(rutaDeudasOld, rutaPagos, rutaDeudasNew, rutaLog) {
+    let deudas = fs.readFileSync(rutaDeudasOld, 'utf-8');
+    let pagos = fs.readFileSync(rutaPagos, 'utf-8');
+    let deudasJson = JSON.parse(deudas);
+    let pagosJson = JSON.parse(pagos);
+
+    let newDeudas = actualizarDeudas(deudasJson, pagosJson, function (logT) {
+        fs.appendFileSync(rutaLog, logT, 'utf-8')
+    });
+
+    fs.appendFileSync(rutaDeudasNew, JSON.stringify(newDeudas, null, 1), 'utf-8');
+
 }
 
 /**
@@ -31,6 +45,34 @@ function actualizarArchivosDeudas(rutaDeudasOld, rutaPagos, rutaDeudasNew, rutaL
  * @returns {Object[]} las deudas actualizadas
  */
 function actualizarDeudas(deudas, pagos, logger) {
+
+    /*Verifico los pagos */
+    pagos.forEach(pago => {
+        let deudor = deudas.filter(deuda => pago.dni == deuda.dni);
+        deudor = deudor[0];
+        if (!deudor) {
+            logger(armarMsgPagoSinDeudaAsociada(pago));
+        } else if (deudor.apellido != pago.apellido) {
+            logger(armarMsgPagoConDatosErroneos(deudor, pago));
+        } else {
+            deudor.debe -= pago.pago;
+
+            if (deudor.debe < 0) {
+                logger(armarMsgPagoDeMas(deudor));
+            }
+        }
+
+    })
+
+    /*Creo el nuevo array con los deudores */
+    let newDeudor = []
+    deudas.forEach(deudor => {
+        if (deudor.debe > 0) {
+            newDeudor.push(deudor);
+        }
+    })
+
+    return newDeudor;
 }
 
 /**
@@ -83,6 +125,6 @@ se mantiene el registro original sin cambios
 }
 
 // no modificar la interfaz pública!
-export default {
+module.exports = {
     actualizarArchivosDeudas
 }
