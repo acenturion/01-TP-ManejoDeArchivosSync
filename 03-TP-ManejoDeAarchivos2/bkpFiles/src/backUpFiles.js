@@ -41,20 +41,12 @@ function realizarBackUpFolderAsync(rutaOriginal, rutaBkp, filters) {
 };
 
 async function realizarBackUpFolderNewAsync(rutaOriginal, rutaBkp, filters) {
-    try {
-        let exists = await fs.access(rutaBkp);
-        console.log(exists);
-        
-        if (exists) {
-            //fs.mkdir(rutaBkp, () => { })
-        }
-    } catch (error) {
-        console.log(error);
-
-    }
+    //todo
 };
 
-
+/*
+    Funcion para verificar que el nombre del archivo coincide con los filtros ingresados
+*/
 function filterFiles(string, suffixes) {
     for (let suffix of suffixes) {
         if (string.endsWith(suffix) || string.startsWith(suffix))

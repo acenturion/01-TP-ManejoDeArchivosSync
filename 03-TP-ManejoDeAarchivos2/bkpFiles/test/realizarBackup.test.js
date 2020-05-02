@@ -5,12 +5,12 @@ const bk = require("../src/backUpFiles.js");
 
 const rutaOriginal = "./files/original/";
 const rutaBkpSync = "./files/orginalSync-bkp/";
-const rutaBkpAsync = "./files/orginalAync-bkp/";
-const rutaBkpNewAsync = "./files/orginalNewAync-bkp/";
+const rutaBkpAsync = "./files/orginalAsync-bkp/";
+const rutaBkpNewAsync = "./files/orginalNewAsync-bkp/";
 const filters = [".",".documento"];
 
-//bk.realizarBackUpFolderSync(rutaOriginal, rutaBkpSync, filters);
+bk.realizarBackUpFolderSync(rutaOriginal, rutaBkpSync, filters);
 
-// bk.realizarBackUpFolderAsync(rutaOriginal, rutaBkpAsync, filters);
+bk.realizarBackUpFolderAsync(rutaOriginal, rutaBkpAsync, filters);
 
-bk.realizarBackUpFolderNewAsync(rutaOriginal, rutaBkpNewAsync, filters);
+//bk.realizarBackUpFolderNewAsync(rutaOriginal, rutaBkpNewAsync, filters);
