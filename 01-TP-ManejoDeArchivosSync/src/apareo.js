@@ -30,7 +30,7 @@ function combinarNArrays(arrs) {
 }
 
 // exportar ambas funciones
-module.exports = {
+export {
     combinarDosArrays,
     combinarNArrays
 }

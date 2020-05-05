@@ -1,6 +1,6 @@
 // importar lo que sea necesario
-const fs = require('fs');
-const util = require('util');
+import fs from 'fs'
+import util from 'util'
 
 /**
  * ordena (in place) una coleccion de datos segun las claves provistas.
@@ -125,6 +125,4 @@ se mantiene el registro original sin cambios
 }
 
 // no modificar la interfaz pública!
-module.exports = {
-    actualizarArchivosDeudas
-}
+export default actualizarArchivosDeudas;

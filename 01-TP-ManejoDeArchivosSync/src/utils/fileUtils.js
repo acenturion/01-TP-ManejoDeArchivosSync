@@ -1,4 +1,4 @@
-const fs = require("fs");
+import fs from 'fs'
 const ENCODE = 'utf-8'
 /**
  * lee y devuelve el contenido de un archivo como texto en 'utf-8'
@@ -38,7 +38,7 @@ function escribirTextoEnArchivo(ruta, texto, shouldCreateIfNotExists) {
 }
 
 // exportar ambas funciones
-module.exports = {
+export {
     leerArchivoComoString,
     escribirTextoEnArchivo
 }

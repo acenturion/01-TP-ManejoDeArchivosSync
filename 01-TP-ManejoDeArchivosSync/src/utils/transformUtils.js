@@ -28,7 +28,7 @@ function transformarArrayDeNumerosAUnSoloString(arr, separador) {
 }
 
 // exportar ambas funciones
-module.exports = {
+export {
     transformarArrayDeNumerosAUnSoloString,
     transformarStringEnArrayDeNumeros
 }
